@@ -6,7 +6,7 @@ import { placeBetUser, haveTotalMultiplierUser } from "../stubs/user-stub";
 import appConfigs from "../../../src/app-configs.IGT";
 import gameSettings from "../../../src/game-settings";
 import GameApp from "../../../src/game-app";
-import CascadingSlotContainerRegistry from "../../../src/cascading-slot-container-registry";
+import IGTSlotGameContainerRegistry from "./igt-container-registry";
 
 export const run = async (gameName) => {
     initAPIStub(appConfigs.apiSettings.apiUrl);
@@ -25,7 +25,7 @@ export const run = async (gameName) => {
 
         const gameData = new SlotGameData(gameSettings.durations.wholeRound);
         const definition = new SlotGameDefinition(gameSettings);
-        const container = new CascadingSlotContainerRegistry().register(appConfigs, definition, gameData);
+        const container = new IGTSlotGameContainerRegistry().register(appConfigs, definition, gameData);
 
         await app.startGame(container);
     }

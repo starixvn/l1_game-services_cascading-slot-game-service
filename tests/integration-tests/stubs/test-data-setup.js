@@ -14,6 +14,7 @@ import { stubHistoryData } from "./history-query-stubs";
 import configs from "../../../src/app-configs.IGT";
 import { rounds, freeSpins, totalMultipliers } from "../../../src/models";
 import { game, gameConfig, currencyData, rounds as roundDatas, playerFreeSpins, playerMultipliers } from "./test-data";
+import idcounters from "sc-slot-game-base/src/models/id-counters";
 
 const TreasureIslandRounds = rounds("treasureisland");
 const TreasureIslandTotalMultipliers = totalMultipliers("treasureisland");
@@ -45,7 +46,7 @@ const createTestData = async () => {
     await createPlayerFreeSpins();
     await createPlayerMultipliers();
     await stubHistoryData(currency, TreasureIslandRounds, TreasureIslandTotalMultipliers);
-
+    await idcounters.create({ f: "id", m: "TreasureIsland_round", c: 6 });
     console.log("Create game config & dummy user for testing successfully!");
 
     process.exit(0);

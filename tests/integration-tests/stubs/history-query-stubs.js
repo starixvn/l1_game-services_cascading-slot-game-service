@@ -3,7 +3,6 @@ import { createDummyUser } from "sc-game-service-integration-utils";
 export const queryHistoryUser = { playerId: 3, playerName: "QueryHistoryUser", UID: "" };
 
 export const playerMultipliers = {
-    _id: "62b2b4a962eb9107dc13a016",
     playerId: 6,
     time: "2022-06-22T06:16:07.186Z",
     uid: "UID",

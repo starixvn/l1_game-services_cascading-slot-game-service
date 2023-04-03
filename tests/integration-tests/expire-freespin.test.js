@@ -1,10 +1,9 @@
-import { playerFreeSpins } from "./stubs/test-data";
+import { game, playerFreeSpins } from "./stubs/test-data";
 import { middlewares } from "sc-common";
 import mongoose from "mongoose";
 import { totalMultipliers } from "../../src/models";
 import { gameNotifications } from "sc-base-database";
 import configs from "../../src/app-configs";
-import GameSettings from "../../src/game-settings";
 const JEST_ASSERT_WAITING_RESPONSE_TIMEOUT = 80000;
 
 const TreasureIslandTotalMultipliers = totalMultipliers("treasureisland");
@@ -26,7 +25,7 @@ describe("event expire freeSpin", () => {
             await middlewares.database.configureDatabase(mongoose, configs.database);
             await gameNotifications.create({
                 uid: playerFreeSpin.uid,
-                gameId: GameSettings.id,
+                gameId: game.id,
                 gameInfo: { freeSpinExpiryTime: playerFreeSpin.expiryTime },
             });
 
@@ -34,7 +33,7 @@ describe("event expire freeSpin", () => {
             await new Promise((r) => setTimeout(r, 61000));
             const actualResult = await gameNotifications.find({
                 uid: playerFreeSpin.uid,
-                gameId: GameSettings.id,
+                gameId: game.id,
             });
 
             // Assert
