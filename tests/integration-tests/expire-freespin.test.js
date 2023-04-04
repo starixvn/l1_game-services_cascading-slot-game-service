@@ -3,7 +3,7 @@ import { middlewares } from "sc-common";
 import mongoose from "mongoose";
 import { totalMultipliers } from "../../src/models";
 import { gameNotifications } from "sc-base-database";
-import configs from "../../src/app-configs";
+import configs from "../../src/app-configs.IGT";
 const JEST_ASSERT_WAITING_RESPONSE_TIMEOUT = 80000;
 
 const TreasureIslandTotalMultipliers = totalMultipliers("treasureisland");
@@ -12,6 +12,9 @@ describe("event expire freeSpin", () => {
     const playerFreeSpin = playerFreeSpins[0];
 
     describe("when freeSpin expired", () => {
+        beforeAll(async () => {
+            await middlewares.database.configureDatabase(mongoose, configs.database);
+        });
         beforeEach(() => {
             jest.setTimeout(JEST_ASSERT_WAITING_RESPONSE_TIMEOUT);
         });
@@ -22,7 +25,6 @@ describe("event expire freeSpin", () => {
 
         it("should remove game notification", async () => {
             // Arrange
-            await middlewares.database.configureDatabase(mongoose, configs.database);
             await gameNotifications.create({
                 uid: playerFreeSpin.uid,
                 gameId: game.id,
@@ -41,9 +43,6 @@ describe("event expire freeSpin", () => {
         });
 
         it("should stop total multiplier chain", async () => {
-            // Arrange
-            await middlewares.database.configureDatabase(mongoose, configs.database);
-
             // Act
             await new Promise((r) => setTimeout(r, 61000));
             const actualResult = await TreasureIslandTotalMultipliers.find({
