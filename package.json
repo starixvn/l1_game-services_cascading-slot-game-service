@@ -41,7 +41,7 @@
         "jest-sonar-reporter": "2.0.0",
         "jest-when": "3.5.1",
         "nodemon": "2.0.16",
-        "sc-game-service-integration-utils": "1.3.6"
+        "sc-game-service-integration-utils": "1.3.7"
     },
     "husky": {
         "hooks": {
