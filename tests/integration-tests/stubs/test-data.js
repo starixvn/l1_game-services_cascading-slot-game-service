@@ -171,7 +171,7 @@ const rounds = [
         siteId: "4100300",
         currency: "$US",
         operatorId: "ONEworks1",
-        playerId: 123456,
+        playerId: "123456",
         __v: 0,
         endTime: "2022-06-03T07:32:21.150+00:00",
         result: "1,0,1,2,4,8,1,6,4,4,3,1,1,4,6,6,4,2,7,2,0,6,0,5,3,3,0,6,1,0",
@@ -196,9 +196,8 @@ const freeSpinsExpiredTime = new Date(currentTime.getTime() + 60 * 1000);
 const playerFreeSpins = [
     {
         available: 2,
-        memberId: 2,
         name: "HaveTotalMultiplierUser",
-        playerId: 2,
+        playerId: "2",
         id: 1,
         uid: "HaveTotalMultiplierUser",
         roundId: 1,
@@ -215,7 +214,7 @@ const playerFreeSpins = [
 const playerMultipliers = [
     {
         uid: "HaveTotalMultiplierUser",
-        playerId: 2,
+        playerId: "2",
         name: "HaveTotalMultiplierUser",
         time: currentTime,
         rounds: [{ prevTotalMultiplier: 0, totalMultiplier: 2, multiplier: 2, time: currentTime, roundId: 1 }],
@@ -230,4 +229,5 @@ const socketOptions = {
     proxyRoute: "/socket.io",
 };
 
-export { game, gameConfig, currencyData, rounds, socketOptions, playerFreeSpins, playerMultipliers };
+export { currencyData, game, gameConfig, playerFreeSpins, playerMultipliers, rounds, socketOptions };
+
