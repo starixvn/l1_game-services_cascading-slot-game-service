@@ -46,7 +46,7 @@ export default {
         env: "LOCAL",
     },
     authenticateSettings: {
-        url: "http://l1_auth_api_local:5000",
+        url: "http://l1-auth-api-local-service:5000",
         id: "game-services",
         secret: "gameservices@20luminet&",
         requestTimeout: 10000,
