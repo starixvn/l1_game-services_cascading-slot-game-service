@@ -1,7 +1,7 @@
 import { GameClientDriver } from "sc-game-service-integration-utils";
-import { socketOptions } from "./stubs/test-data";
 import { initUserSession } from "./helpers";
 import { queryHistoryUser } from "./stubs/history-query-stubs";
+import { socketOptions } from "./stubs/test-data";
 
 describe("event get history", () => {
     let userClientDriver;
@@ -31,8 +31,6 @@ describe("event get history", () => {
     describe("when page > 0 and real player", () => {
         it("should return details", async () => {
             // Arrange
-            let gameClientDriver = new GameClientDriver(socketOptions, initUserSession(queryHistoryUser));
-
             const expectedValue = {
                 history: {
                     betLogs: [
