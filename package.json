@@ -25,6 +25,9 @@
         "sc-cascading-slot-base": "1.1.0",
         "sc-trial-mode": "1.0.1"
     },
+    "resolutions": {
+        "sc-game-base": "4.0.0"
+    },
     "devDependencies": {
         "@babel/preset-env": "7.18.2",
         "@commitlint/cli": "9.1.2",
