@@ -1,8 +1,8 @@
-import { asValue, asClass } from "awilix";
+import { asClass, asValue } from "awilix";
 import * as Slot from "sc-cascading-slot-base";
 import CascadingSlotGameCron from "./crons/cascading-slot-game-cron";
+import { currencyGroupGames, freeSpins, rounds, totalMultipliers } from "./models";
 import { CascadingSlotTrialMode, TrialModeBoardGenerator, TrialModeRoundCalculator } from "./trial-mode";
-import { freeSpins, rounds, totalMultipliers } from "./models";
 
 export default class CascadingSlotContainerRegistry extends Slot.CascadingSlotContainerRegistry {
     register(appConfigs, definition, gameData) {
@@ -29,6 +29,7 @@ export default class CascadingSlotContainerRegistry extends Slot.CascadingSlotCo
             roundsRepository: asValue(rounds(definition.configName)),
             freeSpinsRepository: asValue(freeSpins(definition.configName)),
             totalMultiplierRepository: asValue(totalMultipliers(definition.configName)),
+            currencyGroupGamesRepository: asValue(currencyGroupGames()),
         });
     }
 
