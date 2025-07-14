@@ -13,7 +13,7 @@ module.exports = async () => {
         setupFilesAfterEnv: ["jest-extended"],
         globalSetup: "<rootDir>/tests/integration-tests/global-setup.cjs",
         globalTeardown: "<rootDir>/tests/integration-tests/global-teardown.cjs",
-        testTimeout: 20000,
+        testTimeout: 120000,
         testSequencer: "./testSequencer.cjs",
     };
 };

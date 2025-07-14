@@ -7,14 +7,14 @@ import {
     createGameConfig,
     createPartnerConfig,
 } from "sc-game-service-integration-utils";
-import { createDummyUsers as createCascadingSlotDummyUsers } from "./user-stub";
 import { createCurrencyGroupGames } from "./currency-group-games-stub";
 import { stubHistoryData } from "./history-query-stubs";
+import { createDummyUsers as createCascadingSlotDummyUsers } from "./user-stub";
 
-import configs from "../../../src/app-configs.IGT";
-import { rounds, freeSpins, totalMultipliers } from "../../../src/models";
-import { game, gameConfig, currencyData, rounds as roundDatas, playerFreeSpins, playerMultipliers } from "./test-data";
 import idcounters from "sc-slot-game-base/src/models/id-counters";
+import configs from "../../../src/app-configs.IGT";
+import { freeSpins, rounds, totalMultipliers } from "../../../src/models";
+import { currencyData, game, gameConfig, playerFreeSpins, playerMultipliers, rounds as roundDatas } from "./test-data";
 
 const TreasureIslandRounds = rounds("treasureisland");
 const TreasureIslandTotalMultipliers = totalMultipliers("treasureisland");
