@@ -1,5 +1,5 @@
-import { Core } from "sc-game-base";
 import { logger } from "sc-common";
+import { Core } from "sc-game-base";
 
 export default class GameStartup extends Core.BaseStartup {
     constructor(container) {
@@ -24,9 +24,6 @@ export default class GameStartup extends Core.BaseStartup {
         });
 
         try {
-            const gameConfigsRepository = this.container.resolve(this.dependencies.gameConfigsRepository);
-            this.gameData.gameConfigs = await gameConfigsRepository.findOne({ name: this.definition.configName }).lean().exec();
-
             await this.gameCron.start();
             this.processBetQueue.start();
         } catch (error) {

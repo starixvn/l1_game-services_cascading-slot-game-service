@@ -1,10 +1,10 @@
 import { createContainer } from "awilix";
+import { stub, stubMongoose } from "jest-micro-auto-stub";
 import { when } from "jest-when";
+import mongoose from "mongoose";
 import { Core } from "sc-game-base";
 import GameStartup from "../../src/game-startup";
 import CascadingSlotTrialMode from "../../src/trial-mode/cascading-slot-trial-mode";
-import { stub, stubMongoose } from "jest-micro-auto-stub";
-import mongoose from "mongoose";
 
 describe("GameStartup", () => {
     const container = createContainer();
@@ -84,20 +84,6 @@ describe("GameStartup", () => {
 
             // Assert
             expect(socketServer.of).toHaveBeenNthCalledWith(3, `/trial/${definition.name}`);
-        });
-
-        it("should get gameConfigs", async () => {
-            // Arrange
-            const gameConfigs = {
-                id: 47,
-            };
-            gameConfigsRepository.findOne().lean().exec.mockResolvedValue(gameConfigs);
-
-            // Act
-            await gameStartup.start(app, socketServer);
-
-            // Assert
-            expect(gameStartup.gameData.gameConfigs).toStrictEqual(gameConfigs);
         });
 
         it("should call gameCron.start", async () => {

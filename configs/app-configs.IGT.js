@@ -48,4 +48,7 @@ export default {
     },
     adminSecretKey: "asWDEerfOIdgsdqRTFabvmgh",
     enableMsgpackParser: false,
+    gameManagementApiSettings: {
+        BASE: "https://l1-proxy.lumigame.com/game-management-service-igt-test",
+    },
 };

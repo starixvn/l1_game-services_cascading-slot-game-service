@@ -49,4 +49,12 @@ export default {
     adminSecretKey: "asWDEerfOIdgsdqRTFabvmgh",
     freeSpinLiveSeconds: 86400, // 1 day
     bonusLiveSeconds: 127,
+    otel: {
+        system: "VG",
+        enabled: true,
+        endpoint: "http://10.10.50.69:4318/v1/traces",
+    },
+    gameManagementApiSettings: {
+        BASE: "http://l2-game-management-service-local-service:5000",
+    },
 };

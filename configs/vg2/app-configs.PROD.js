@@ -54,4 +54,7 @@ export default {
     enableMsgpackParser: true,
     freeSpinLiveSeconds: 86400, // 1 day
     bonusLiveSeconds: 127,
+    gameManagementApiSettings: {
+        BASE: "http://l2_game_management_service_prod:5000",
+    },
 };
