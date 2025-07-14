@@ -31,8 +31,6 @@ const run = async () => {
             null
         );
 
-        console.log("gameConfigs", gameConfigs);
-
         if (gameConfigs) {
             gameSettings.id = gameConfigs.gameId;
             gameSettings.name = gameConfigs.displayName.replace(/ /g, "");

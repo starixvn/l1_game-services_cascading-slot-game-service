@@ -1,7 +1,7 @@
 import axios from "axios";
 import { GameClientDriver, normalUser } from "sc-game-service-integration-utils";
-import { socketOptions } from "./stubs/test-data";
 import { initUserSession } from "./helpers";
+import { socketOptions } from "./stubs/test-data";
 const JEST_ASSERT_WAITING_RESPONSE_TIMEOUT = 80000;
 
 const setResult = async (result) => {
@@ -70,7 +70,7 @@ describe("Settlement tests", () => {
             userClientDriver.emit("bet", { betLevel: 1, coinValue: 1, totalBet: 20, freeSpin: false });
             const result = await userClientDriver.handleGameEvent((data) => data.finish);
             //Assert
-            expect(result.finish.bigWin).toBeTrue();
+            expect(result.finish.bigWin).toBeTruthy();
         });
     });
 
