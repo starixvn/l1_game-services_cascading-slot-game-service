@@ -1,8 +1,7 @@
 import { asClass, asValue } from "awilix";
 import * as Slot from "sc-cascading-slot-base";
-import InGameConsumer from "./consumers/in-game-consumer";
 import CascadingSlotGameCron from "./crons/cascading-slot-game-cron";
-import { currencyGroupGames, freeSpins, rounds, totalMultipliers } from "./models";
+import { freeSpins, rounds, totalMultipliers } from "./models";
 import { CascadingSlotTrialMode, TrialModeBoardGenerator, TrialModeRoundCalculator } from "./trial-mode";
 
 export default class CascadingSlotContainerRegistry extends Slot.CascadingSlotContainerRegistry {
@@ -30,7 +29,6 @@ export default class CascadingSlotContainerRegistry extends Slot.CascadingSlotCo
             roundsRepository: asValue(rounds(definition.configName)),
             freeSpinsRepository: asValue(freeSpins(definition.configName)),
             totalMultiplierRepository: asValue(totalMultipliers(definition.configName)),
-            currencyGroupGamesRepository: asValue(currencyGroupGames()),
         });
     }
 
@@ -39,14 +37,6 @@ export default class CascadingSlotContainerRegistry extends Slot.CascadingSlotCo
 
         this.container.register({
             gameCron: asClass(CascadingSlotGameCron).singleton().proxy(),
-        });
-    }
-
-    registerConsumers() {
-        super.registerConsumers();
-
-        this.container.register({
-            inGameConsumer: asClass(InGameConsumer).singleton().proxy(),
         });
     }
 }
