@@ -1,4 +1,4 @@
-import { CurrencyGroupGames } from "sc-game-base/src/core/models";
+import { CurrencyGroupGames } from "sc-base-database";
 
 export const createCurrencyGroupGames = async (currencyGroupId, gameId, gameConfig) => {
     const data = {
