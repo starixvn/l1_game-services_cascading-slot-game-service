@@ -1,13 +1,14 @@
-import mongoose from "mongoose";
-import { stub, stubMongoose } from "jest-micro-auto-stub";
-import { logger } from "sc-common";
-import CascadingSlotGameCron from "../../../src/crons/cascading-slot-game-cron";
-import { SettleGameRoundConsumer, FreeSpinsConsumer, TotalMultiplierConsumer } from "sc-cascading-slot-base/src/event-consumers";
-import { CascadingGameCron, CascadingBot } from "sc-cascading-slot-base/src/crons";
-import { IdCountersConsumer } from "sc-slot-game-base/src/event-consumers";
-import { BoardGenerator } from "sc-slot-board-generator";
-import { TrialModeBoardGenerator, CascadingSlotTrialMode } from "../../../src/trial-mode";
 import Chance from "chance";
+import { stub, stubMongoose } from "jest-micro-auto-stub";
+import mongoose from "mongoose";
+import { CascadingBot, CascadingGameCron } from "sc-cascading-slot-base/src/crons";
+import { FreeSpinsConsumer, SettleGameRoundConsumer, TotalMultiplierConsumer } from "sc-cascading-slot-base/src/event-consumers";
+import { logger } from "sc-common";
+import GameManagementApiClientFactory from "sc-game-base/src/core/game-management-api";
+import { BoardGenerator } from "sc-slot-board-generator";
+import { IdCountersConsumer } from "sc-slot-game-base/src/event-consumers";
+import CascadingSlotGameCron from "../../../src/crons/cascading-slot-game-cron";
+import { CascadingSlotTrialMode, TrialModeBoardGenerator } from "../../../src/trial-mode";
 
 describe("gameCron", () => {
     const chance = new Chance();
@@ -30,19 +31,25 @@ describe("gameCron", () => {
     const idCountersConsumer = stub(IdCountersConsumer);
     const gameStatusPublisher = {};
     const runningRoundInfoPublisher = {};
-    const gameConfigsRepository = stubMongoose(mongoose.Model);
     const roundsRepository = stubMongoose(mongoose.Model);
-    const currencyGroupGamesRepository = stubMongoose(mongoose.Model);
-    const currencyGroupRepository = stubMongoose(mongoose.Model);
-    const currencyRepository = stubMongoose(mongoose.Model);
     const archiveStatusesRepository = stubMongoose(mongoose.Model);
-    const notificationRepository = stubMongoose(mongoose.Model);
-    const exchangeRatesRepository = stubMongoose(mongoose.Model);
-    const partnerConfigRepository = stubMongoose(mongoose.Model);
     const totalMultiplierConsumer = stub(TotalMultiplierConsumer);
     const cascadingSlotTrialMode = stub(CascadingSlotTrialMode);
     const trialModeBoardGenerator = stub(TrialModeBoardGenerator);
     const boardGenerator = stub(BoardGenerator);
+    const gameManagementApiClientFactory = stub(GameManagementApiClientFactory);
+    const gameManagementApiClient = {
+        archiveStatus: {
+            getArchiveStatus: jest.fn(),
+        },
+        aggregation: {
+            getSettingForNewRound: jest.fn(),
+        },
+        exchangeRates: {
+            getExchangeRates: jest.fn(),
+        },
+    };
+    gameManagementApiClientFactory.instance.mockReturnValue(gameManagementApiClient);
 
     let gameCron;
 
@@ -57,19 +64,13 @@ describe("gameCron", () => {
             gameStatusPublisher,
             runningRoundInfoPublisher,
             logService: logger,
-            gameConfigsRepository,
             roundsRepository,
             archiveStatusesRepository,
-            notificationRepository,
-            exchangeRatesRepository,
-            currencyGroupGamesRepository,
-            partnerConfigRepository,
-            currencyGroupRepository,
-            currencyRepository,
             totalMultiplierConsumer,
             boardGenerator,
             cascadingSlotTrialMode,
             trialModeBoardGenerator,
+            gameManagementApiClientFactory,
         });
     });
 

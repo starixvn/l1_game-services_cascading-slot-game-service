@@ -21,4 +21,7 @@ export default Object.assign(appConfigs, {
             auto_reconnect: true,
         },
     },
+    gameManagementApiSettings: {
+        BASE: "https://l1-proxy.lumigame.com/game-management-service-igt-test",
+    },
 });

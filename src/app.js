@@ -1,13 +1,21 @@
-import { SlotGameData, SlotGameDefinition } from "sc-slot-game-base";
-import { gameConfigs as gameConfigsRepository } from "sc-base-database";
-import appConfigs from "./app-configs";
-import gameSettings from "./game-settings";
 import { logger } from "sc-common";
-import GameApp from "./game-app";
+import GameManagementApiClientFactory, { getOrDefault } from "sc-game-base/src/core/game-management-api";
+import { addIdentifiers, initializer, initSpanProcessor } from "sc-instrument";
+import { SlotGameData, SlotGameDefinition } from "sc-slot-game-base";
+import appConfigs from "./app-configs";
 import CascadingSlotContainerRegistry from "./cascading-slot-container-registry";
+import GameApp from "./game-app";
+import gameSettings from "./game-settings";
 
 const run = async () => {
     const appName = process.env.APP_NAME;
+
+    if (appConfigs.otel?.enabled) {
+        const { otel } = appConfigs;
+        initSpanProcessor(otel.endpoint, initializer);
+        addIdentifiers(`${otel.system} - ${appName}`, appConfigs.sentry.env, initializer);
+        initializer.start();
+    }
 
     if (appName) {
         const gameName = appName.replace("service", "").replaceAll("_", "");
@@ -18,7 +26,10 @@ const run = async () => {
         const app = new GameApp(gameName, appConfigs);
         await app.run();
 
-        const gameConfigs = await gameConfigsRepository.findOne({ name: gameName.toLowerCase() }).lean().exec();
+        const gameConfigs = await getOrDefault(
+            new GameManagementApiClientFactory(appConfigs).instance().gameConfigs.getGameConfigs(gameName),
+            null
+        );
 
         if (gameConfigs) {
             gameSettings.id = gameConfigs.gameId;
@@ -29,7 +40,7 @@ const run = async () => {
             const container = new CascadingSlotContainerRegistry().register(appConfigs, definition, gameData);
 
             await app.startGame(container);
-        }else{
+        } else {
             logger.logCritical(`${gameName} config doesn't exist`);
         }
     } else {
