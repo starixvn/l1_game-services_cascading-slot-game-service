@@ -38,6 +38,8 @@ const run = async () => {
             gameSettings.name = gameConfigs.displayName.replace(/ /g, "");
 
             const gameData = new SlotGameData(gameSettings.durations.wholeRound);
+            gameData.gameConfigs = gameConfigs;
+
             const definition = new SlotGameDefinition(gameSettings);
             const container = new CascadingSlotContainerRegistry().register(appConfigs, definition, gameData);
 
