@@ -230,4 +230,3 @@ const socketOptions = {
 };
 
 export { currencyData, game, gameConfig, playerFreeSpins, playerMultipliers, rounds, socketOptions };
-

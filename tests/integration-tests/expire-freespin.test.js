@@ -28,7 +28,7 @@ describe("event expire freeSpin", () => {
             const actualResult = await TreasureIslandTotalMultipliers.find({
                 uid: playerFreeSpin.uid,
                 ended: false,
-            });
+            }).lean();
 
             // Assert
             expect(actualResult.length).toBe(0);
