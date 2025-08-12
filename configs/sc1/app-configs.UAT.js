@@ -32,7 +32,7 @@ export default {
         },
     },
     sentry: {
-        sentryUrl: "http://52368c4019044019885440599c180bda@10.2.190.51:9009/24",
+        sentryUrl: "http://58fc00e79ab34a3bab04a79038760cb8@sentrysc-ovs.ops-kluat.gamora.prod/8",
         logIdentifier: "cascading-slot",
         env: "UAT",
     },

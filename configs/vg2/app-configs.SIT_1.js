@@ -30,7 +30,7 @@ export default {
         },
     },
     sentry: {
-        sentryUrl: "http://8ac47fca6d3e4a41908896a64ef201ac@10.2.190.51:9009/53",
+        sentryUrl: "http://2b5b82bf699543ddb296364568bc30be@sentrysc-ovs.ops-sit.nebula.sit/52",
         logIdentifier: "cascading-slot",
         env: "SIT_1",
     },
