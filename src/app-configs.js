@@ -59,4 +59,10 @@ export default {
     adminSecretKey: "asWDEerfOIdgsdqRTFabvmgh",
     freeSpinLiveSeconds: 86400, // 1 day
     bonusLiveSeconds: 127,
+    gameManagementApiSettings: {
+        BASE: "https://l1-proxy.lumigame.com/game-management-service",
+    },
+    tracking: {
+        baseUrl: "https://l1-proxy1.lumigame.com/user-tracking-api",
+    },
 };
