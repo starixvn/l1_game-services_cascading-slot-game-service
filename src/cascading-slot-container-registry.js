@@ -1,5 +1,6 @@
 import { asClass, asValue } from "awilix";
 import * as Slot from "sc-cascading-slot-base";
+import BonusWinConsumer from "./consumers/bonus-win-consumer";
 import CascadingSlotGameCron from "./crons/cascading-slot-game-cron";
 import { freeSpins, rounds, totalMultipliers } from "./models";
 import { CascadingSlotTrialMode, TrialModeBoardGenerator, TrialModeRoundCalculator } from "./trial-mode";
@@ -37,6 +38,14 @@ export default class CascadingSlotContainerRegistry extends Slot.CascadingSlotCo
 
         this.container.register({
             gameCron: asClass(CascadingSlotGameCron).singleton().proxy(),
+        });
+    }
+
+    registerConsumers() {
+        super.registerConsumers();
+
+        this.container.register({
+            bonusWinConsumer: asClass(BonusWinConsumer).singleton().proxy(),
         });
     }
 }
