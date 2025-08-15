@@ -58,4 +58,7 @@ export default {
         timeout: 5000,
         useAuthentication: false,
     },
+    gameManagementApiSettings: {
+        BASE: "http://l2-game-management-service-sit1-service:5000",
+    },
 };
