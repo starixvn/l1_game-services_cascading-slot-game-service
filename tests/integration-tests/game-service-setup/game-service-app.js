@@ -14,8 +14,6 @@ export const run = async (gameName) => {
     initAPIStub(appConfigs.apiSettings.apiUrl);
     stubUserService(appConfigs, [placeBetUser, haveTotalMultiplierUser, normalUser, errorUser, internalServerErrorUser, endGameErrorUser]);
 
-    appConfigs.database.url = appConfigs.database.url.concat(`&appName=${gameName.toLowerCase()}`);
-
     const app = new GameApp(gameName, appConfigs);
     await app.run();
 
