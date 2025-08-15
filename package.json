@@ -6,7 +6,7 @@
     "scripts": {
         "test": "jest --testPathPattern=tests/unit-tests",
         "test-coverage": "jest --collect-coverage --testPathPattern=tests/unit-tests",
-        "dev": "nodemon --es-module-specifier-resolution=node --watch ./src ./src/app.js",
+        "dev": "set APP_NAME=wukongs-revenge-service && nodemon --es-module-specifier-resolution=node --watch ./src ./src/app.js",
         "debug": "nodemon --es-module-specifier-resolution=node --watch ./ --inspect ./src/app.js",
         "prod": "node --max-old-space-size=8192 --es-module-specifier-resolution=node ./src/app.js",
         "reg": "npm set registry http://npm.lumigame.com",
@@ -27,7 +27,10 @@
     },
     "resolutions": {
         "sc-base-apis": "1.18.2",
-        "sc-game-base": "4.0.0"
+        "sc-game-base": "4.0.0",
+        "mongoose": "6.13.6",
+        "form-data": "4.0.4",
+        "sc-common": "2.0.0"
     },
     "devDependencies": {
         "@babel/preset-env": "7.24.4",
