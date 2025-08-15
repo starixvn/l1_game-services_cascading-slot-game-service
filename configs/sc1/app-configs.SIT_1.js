@@ -28,11 +28,10 @@ export default {
             dbName: "minigame",
             useNewUrlParser: true,
             useUnifiedTopology: true,
-            auto_reconnect: true,
         },
     },
     sentry: {
-        sentryUrl: "http://52368c4019044019885440599c180bda@10.2.190.51:9009/24",
+        sentryUrl: "https://50e405ebce7003a0e1edbda2bf28b14c@sentry-kl.sgamesuat.com/3",
         logIdentifier: "cascading-slot",
         env: "SIT_1",
     },
