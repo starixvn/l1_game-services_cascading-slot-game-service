@@ -15,6 +15,7 @@ const schema = new mongoose.Schema({
     totalMultiplier: { type: Number, default: 0 },
     freeSpin: { type: Boolean, default: false },
     reachMaxWin: { type: Boolean, default: false },
+    buyFreeSpin: { type: Boolean, default: false },
 
     result: { type: String },
     settlementResult: { type: Object },
