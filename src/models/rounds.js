@@ -16,6 +16,7 @@ const schema = new mongoose.Schema({
     freeSpin: { type: Boolean, default: false },
     reachMaxWin: { type: Boolean, default: false },
     buyFreeSpin: { type: Boolean, default: false },
+    buyFreeSpinRefRoundId: { type: Number, required: false },
 
     result: { type: String },
     settlementResult: { type: Object },
