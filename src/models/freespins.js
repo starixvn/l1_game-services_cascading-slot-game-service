@@ -14,6 +14,7 @@ const schema = new mongoose.Schema({
     betLevel: { type: Number, required: true },
     coinValue: { type: Number, require: true },
     betMultiplier: { type: Number, require: true },
+    buyFreeSpin: { type: Boolean, default: false },
     buyFreeSpinRefRoundId: { type: Number, required: false },
 });
 
