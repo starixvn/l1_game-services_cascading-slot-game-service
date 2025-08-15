@@ -30,7 +30,7 @@ export default {
         },
     },
     sentry: {
-        sentryUrl: "https://8eb9632f2663e57c838ec83febbee14f@sentry-kl.sgamesuat.com/4",
+        sentryUrl: "https://8eb9632f2663e57c838ec83febbee14f@sentrysc.playonesit.com/4",
         logIdentifier: "cascading-slot",
         env: "SIT_1",
     },
