@@ -22,7 +22,7 @@
     "type": "module",
     "dependencies": {
         "lodash.clonedeep": "^4.5.0",
-        "sc-cascading-slot-base": "2.0.0-beta.29",
+        "sc-cascading-slot-base": "2.0.0-beta.30",
         "sc-trial-mode": "1.0.1"
     },
     "resolutions": {
