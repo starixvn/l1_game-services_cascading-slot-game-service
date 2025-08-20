@@ -61,7 +61,7 @@ export default {
         BASE: "http://l2-game-management-service-local2-service:5000",
     },
     promotionApiSettings: {
-        baseUrl: "https://l2-proxy2.lumigame.com/game-promotion-api/",
+        baseUrl: "http://l2-game-promotion-api-local2-service:5000",
         timeout: 5000,
         useAuthentication: false,
     },

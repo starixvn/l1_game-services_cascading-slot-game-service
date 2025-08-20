@@ -53,4 +53,12 @@ export default {
         secretKey: "6c1f0f28-70f2-46ae-b031-22624a6cd8df",
     },
     enableMsgpackParser: true,
+    gameManagementApiSettings: {
+        BASE: "http://l1-game-management-service-sit1-service:5000",
+    },
+    promotionApiSettings: {
+        baseUrl: "http://l1-game-promotion-api-sit1-service:5000",
+        timeout: 5000,
+        useAuthentication: false,
+    },
 };

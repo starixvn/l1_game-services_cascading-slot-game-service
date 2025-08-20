@@ -60,4 +60,9 @@ export default {
     gameManagementApiSettings: {
         BASE: "http://l2-game-management-service-local1-service:5000",
     },
+    promotionApiSettings: {
+        baseUrl: "http://l2-game-promotion-api-local1-service:5000",
+        timeout: 5000,
+        useAuthentication: false,
+    },
 };

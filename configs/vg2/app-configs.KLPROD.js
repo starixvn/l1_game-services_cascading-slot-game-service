@@ -53,4 +53,12 @@ export default {
     enableMsgpackParser: true,
     freeSpinLiveSeconds: 86400, // 1 day
     bonusLiveSeconds: 127,
+    gameManagementApiSettings: {
+        BASE: "http://l2-game-management-service-klprod-service:5000",
+    },
+    promotionApiSettings: {
+        baseUrl: "http://l2-game-promotion-api-klprod-service:5000",
+        timeout: 5000,
+        useAuthentication: false,
+    },
 };
