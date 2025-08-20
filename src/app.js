@@ -1,6 +1,5 @@
 import { logger } from "sc-common";
 import GameManagementApiClientFactory, { getOrDefault } from "sc-game-base/src/core/game-management-api";
-import { addIdentifiers, initializer, initSpanProcessor } from "sc-instrument";
 import { SlotGameData, SlotGameDefinition } from "sc-slot-game-base";
 import appConfigs from "./app-configs";
 import CascadingSlotContainerRegistry from "./cascading-slot-container-registry";
@@ -9,13 +8,6 @@ import gameSettings from "./game-settings";
 
 const run = async () => {
     const appName = process.env.APP_NAME;
-
-    if (appConfigs.otel?.enabled) {
-        const { otel } = appConfigs;
-        initSpanProcessor(otel.endpoint, initializer);
-        addIdentifiers(`${otel.system} - ${appName}`, appConfigs.sentry.env, initializer);
-        initializer.start();
-    }
 
     if (appName) {
         const gameName = appName.replace("service", "").replaceAll("_", "");

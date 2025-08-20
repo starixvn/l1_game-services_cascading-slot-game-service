@@ -1,5 +1,4 @@
 import nock from "nock";
-import { gameConfigs as gameConfigsRepository, userInfos as userInfoRepository } from "sc-base-database";
 import { initAPIStub, stubUserService, subGameManagementService } from "sc-game-service-integration-utils";
 import { endGameErrorUser, errorUser, internalServerErrorUser, normalUser } from "sc-game-service-integration-utils/src/stubs/user-stub";
 import { SlotGameData, SlotGameDefinition } from "sc-slot-game-base";
