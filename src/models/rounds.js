@@ -29,6 +29,7 @@ const schema = new mongoose.Schema({
 
     currency: { type: String, require: true },
     currencyCode: { type: String, require: false },
+    currencyGroupId: { type: String, require: false },
     rate: { type: Number, require: true },
     exchangeRateId: { type: Number, require: true },
 
