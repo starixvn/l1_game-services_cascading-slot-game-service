@@ -1,4 +1,4 @@
-FROM hub.lumigame.com/docker-hub/library/node:18.1-alpine AS builder
+FROM hub.lumigame.com/docker-hub/library/node:20.18.2-alpine AS builder
 WORKDIR /app
 COPY package.json yarn.lock .modprunerrc ./
 RUN npm run reg \
@@ -6,7 +6,7 @@ RUN npm run reg \
     && npx mod-pruner prune --force
 COPY ./src/ .
 
-FROM hub.lumigame.com/docker-hub/library/node:18.1-alpine
+FROM hub.lumigame.com/docker-hub/library/node:20.18.2-alpine
 ARG NODE_ENV=production
 ENV NODE_ENV $NODE_ENV
 RUN mkdir /app && chown node:node /app
@@ -18,4 +18,4 @@ COPY --from=builder /app .
 
 HEALTHCHECK --interval=10s CMD node --es-module-specifier-resolution=node healthcheck.js
 
-CMD [ "node", "--es-module-specifier-resolution=node", "./app.js" ]
+CMD [ "node", "--import=extensionless/register", "./app.js" ]
