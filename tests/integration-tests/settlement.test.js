@@ -2,7 +2,7 @@ import axios from "axios";
 import { GameClientDriver, normalUser } from "sc-game-service-integration-utils";
 import { initUserSession } from "./helpers";
 import { socketOptions } from "./stubs/test-data";
-const JEST_ASSERT_WAITING_RESPONSE_TIMEOUT = 80000;
+const JEST_ASSERT_WAITING_RESPONSE_TIMEOUT = 10000;
 
 const setResult = async (result) => {
     await axios.post("http://localhost:5001/igt-api/set-board", {

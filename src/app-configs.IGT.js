@@ -23,4 +23,9 @@ export default Object.assign(appConfigs, {
     gameManagementApiSettings: {
         BASE: "https://l1-proxy.lumigame.com/game-management-service-igt-test",
     },
+    promotionApiSettings: {
+        baseUrl: "https://l1-proxy.lumigame.com/game-promotion-api-igt-test",
+        timeout: 5000,
+        useAuthentication: false,
+    },
 });

@@ -52,8 +52,14 @@ export default {
         enable: true,
         secretKey: "6c1f0f28-70f2-46ae-b031-22624a6cd8df",
     },
+    enableMsgpackParser: false,
     gameManagementApiSettings: {
         BASE: "http://l1-game-management-service-local2-service:5000",
+    },
+    promotionApiSettings: {
+        baseUrl: "http://l1-game-promotion-api-local2-service:5000",
+        timeout: 5000,
+        useAuthentication: false,
     },
     trackingApiSettings: {
         baseUrl: "http://l1-user-tracking-api-local2-service:5000",

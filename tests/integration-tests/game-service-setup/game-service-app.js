@@ -1,4 +1,5 @@
 import nock from "nock";
+import { gameConfigs as gameConfigsRepository, userInfos as userInfoRepository } from "sc-base-database";
 import { initAPIStub, stubUserService, subGameManagementService } from "sc-game-service-integration-utils";
 import { endGameErrorUser, errorUser, internalServerErrorUser, normalUser } from "sc-game-service-integration-utils/src/stubs/user-stub";
 import { SlotGameData, SlotGameDefinition } from "sc-slot-game-base";
@@ -12,8 +13,6 @@ import IGTSlotGameContainerRegistry from "./igt-container-registry";
 export const run = async (gameName) => {
     initAPIStub(appConfigs.apiSettings.apiUrl);
     stubUserService(appConfigs, [placeBetUser, haveTotalMultiplierUser, normalUser, errorUser, internalServerErrorUser, endGameErrorUser]);
-
-    appConfigs.database.url = appConfigs.database.url.concat(`&appName=${gameName.toLowerCase()}`);
 
     const app = new GameApp(gameName, appConfigs);
     await app.run();
