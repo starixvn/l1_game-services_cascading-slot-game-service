@@ -30,7 +30,7 @@ export default {
         },
     },
     sentry: {
-        sentryUrl: "http://8ac47fca6d3e4a41908896a64ef201ac@10.2.190.51:9009/53",
+        sentryUrl: "http://8eb9632f2663e57c838ec83febbee14f@sentrysc.ops-kluat.gamora.prod/4",
         logIdentifier: "cascading-slot",
         env: "UAT",
     },
@@ -55,5 +55,8 @@ export default {
     bonusLiveSeconds: 127,
     gameManagementApiSettings: {
         BASE: "http://l2-game-management-service-uat-service:5000",
+    },
+    trackingApiSettings: {
+        baseUrl: "http://l2-user-tracking-api-uat-service:5000",
     },
 };

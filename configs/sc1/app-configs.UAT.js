@@ -31,7 +31,7 @@ export default {
         },
     },
     sentry: {
-        sentryUrl: "http://52368c4019044019885440599c180bda@10.2.190.51:9009/24",
+        sentryUrl: "http://50e405ebce7003a0e1edbda2bf28b14c@sentrysc.ops-kluat.gamora.prod/3",
         logIdentifier: "cascading-slot",
         env: "UAT",
     },
@@ -53,4 +53,10 @@ export default {
         secretKey: "6c1f0f28-70f2-46ae-b031-22624a6cd8df",
     },
     enableMsgpackParser: true,
+    gameManagementApiSettings: {
+        BASE: "http://l1-game-management-service-uat-service:5000",
+    },
+    trackingApiSettings: {
+        baseUrl: "http://l1-user-tracking-api-uat-service:5000",
+    },
 };
