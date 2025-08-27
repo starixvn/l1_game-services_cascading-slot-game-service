@@ -37,6 +37,7 @@ describe("event get history", () => {
                         {
                             betLevel: 1,
                             betwin: 0,
+                            buyFreeSpin:false,
                             coinValue: 1,
                             currency: "$US",
                             freeSpin: true,
@@ -66,6 +67,7 @@ describe("event get history", () => {
                         {
                             betLevel: 1,
                             betwin: 0,
+                            buyFreeSpin:false,
                             coinValue: 1,
                             currency: "$US",
                             freeSpin: false,

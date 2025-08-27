@@ -42,7 +42,7 @@ describe("event expire freeSpin", () => {
             expect(actualResult.length).toBe(0);
         });
 
-        it("should stop total multiplier chain", async () => {
+        it("should not stop total multiplier chain", async () => {
             // Act
             await new Promise((r) => setTimeout(r, 61000));
             const actualResult = await TreasureIslandTotalMultipliers.find({
@@ -51,7 +51,7 @@ describe("event expire freeSpin", () => {
             });
 
             // Assert
-            expect(actualResult.length).toBe(0);
+            expect(actualResult.length).toBe(1);
         });
     });
 });
