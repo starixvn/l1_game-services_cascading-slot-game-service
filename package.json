@@ -30,7 +30,8 @@
         "sc-game-base": "4.0.0",
         "mongoose": "6.13.6",
         "form-data": "4.0.4",
-        "sc-common": "2.0.0"
+        "sc-common": "2.0.0",
+        "sc-slot-board-generator": "1.1.1-beta.5"
     },
     "devDependencies": {
         "@babel/preset-env": "7.24.4",
