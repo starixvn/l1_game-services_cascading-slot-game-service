@@ -6802,10 +6802,10 @@ sc-base-database@1.11.1:
     mongoose "^5.9.25"
     sc-common "1.8.1"
 
-sc-cascading-slot-base@1.2.2-beta.12:
-  version "1.2.2-beta.12"
-  resolved "http://npm.lumigame.com/sc-cascading-slot-base/-/sc-cascading-slot-base-1.2.2-beta.12.tgz#2525f66de58dddedf97dd4c23e8e1294be4d2daa"
-  integrity sha512-6eD3jQ1Q1Q6yBuW97ngj0xo6aUj8jVkO0E+Vi9DT3d65GBMiXyUzDT0W7dkl2XpmyBUkADLnebdwBXjTR/qcPg==
+sc-cascading-slot-base@1.2.2-beta.13:
+  version "1.2.2-beta.13"
+  resolved "http://npm.lumigame.com/sc-cascading-slot-base/-/sc-cascading-slot-base-1.2.2-beta.13.tgz#a6df0a3d25ba88a984a395a7846a84d5320ac0cf"
+  integrity sha512-qHeOJs1B0qK532143vF7hWqaMMcRnPLGCGc/rYPejbUO3LRFAGy43/5pkW74xIKS3c0+2gBt6awz9Xxrx99FYQ==
   dependencies:
     mathjs "^10.6.1"
     sc-slot-board-generator "1.1.1-beta.4"
