@@ -22,17 +22,16 @@
     "type": "module",
     "dependencies": {
         "lodash.clonedeep": "^4.5.0",
-        "sc-cascading-slot-base": "1.2.2-beta.18",
+        "sc-cascading-slot-base": "1.2.2-beta.19",
         "sc-trial-mode": "1.0.1"
     },
     "resolutions": {
         "sc-base-apis": "1.18.2",
-        "sc-game-base": "4.0.1-beta.10",
+        "sc-game-base": "4.0.0",
         "mongoose": "6.13.6",
         "form-data": "4.0.4",
         "sc-common": "2.0.0",
-        "sc-slot-board-generator": "1.1.1-beta.5",
-        "sc-slot-game-base": "1.6.2-beta.30"
+        "sc-slot-board-generator": "1.1.1-beta.5"
     },
     "devDependencies": {
         "@babel/preset-env": "7.24.4",
