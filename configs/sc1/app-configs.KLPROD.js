@@ -47,7 +47,7 @@ export default {
         url: "http://l1-user-service-klprod-service:5000",
     },
     adminSecretKey: "asWDEer4yGdgsdqR4uqmKQZgh",
-    freeSpinLiveSeconds: 86400, // 1 day
+    freeSpinLiveSeconds: 55 * 60, // 55 minutes
     metrics: {
         enable: true,
         secretKey: "30d15293-c7de-4c77-9293-b85d6c5bfe1a",
