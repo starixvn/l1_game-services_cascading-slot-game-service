@@ -37,6 +37,7 @@ export default class CascadingSlotGameCron extends CascadingGameCron {
         roundIdConsumer,
         gameManagementApiClientFactory,
         promotionFreeSpinsConsumer,
+        resultChainManager,
     }) {
         super({
             definition,
@@ -54,6 +55,7 @@ export default class CascadingSlotGameCron extends CascadingGameCron {
             roundIdConsumer,
             gameManagementApiClientFactory,
             promotionFreeSpinsConsumer,
+            resultChainManager,
         });
 
         this.cascadingSlotTrialMode = cascadingSlotTrialMode;
