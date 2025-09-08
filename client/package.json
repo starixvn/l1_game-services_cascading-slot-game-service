@@ -1,0 +1,35 @@
+{
+    "name": "cascading-slot-game-client",
+    "version": "1.0.0",
+    "description": "Standalone client for cascading slot game service",
+    "type": "module",
+    "main": "index.js",
+    "scripts": {
+        "start": "node --import=extensionless/register cli.js",
+        "play": "node --import=extensionless/register play-game.js",
+        "client": "node --import=extensionless/register cli.js",
+        "simple": "node --import=extensionless/register examples/simple-client.js",
+        "scenarios": "node --import=extensionless/register examples/scenario-client.js",
+        "test-logs": "node --import=extensionless/register test-logs.js"
+    },
+    "bin": {
+        "game-client": "./cli.js"
+    },
+    "keywords": [
+        "game",
+        "client",
+        "socket",
+        "casino",
+        "slot",
+        "cascading"
+    ],
+    "author": "pentagon",
+    "license": "ISC",
+    "dependencies": {
+        "sc-game-service-integration-utils": "2.3.0",
+        "axios": "^1.0.0"
+    },
+    "engines": {
+        "node": ">=14.0.0"
+    }
+}

@@ -10,7 +10,12 @@
         "debug": "nodemon --import=extensionless/register --watch ./ --inspect ./src/app.js",
         "prod": "set APP_NAME=mahjongwins&& node --max-old-space-size=8192 --import=extensionless/register ./src/app.js",
         "reg": "npm set registry http://npm.lumigame.com",
-        "integration-test": "jest --config ./jest.integration-test.config.cjs --testPathPattern=tests/integration-tests/ --ci --reporters=default --reporters=jest-junit --forceExit --runInBand"
+        "integration-test": "jest --config ./jest.integration-test.config.cjs --testPathPattern=tests/integration-tests/ --ci --reporters=default --reporters=jest-junit --forceExit --runInBand",
+        "play": "cd client && node --import=extensionless/register play-game.js",
+        "client": "cd client && node --import=extensionless/register cli.js",
+        "client:simple": "cd client && node --import=extensionless/register examples/simple-client.js",
+        "client:scenarios": "cd client && node --import=extensionless/register examples/scenario-client.js",
+        "client:test-logs": "cd client && node --import=extensionless/register test-logs.js"
     },
     "jestSonar": {
         "reportPath": "reports",
