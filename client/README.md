@@ -109,7 +109,7 @@ Execute complete game: signin → ingame → placebet → endgame
 ```javascript
 const result = await client.executeFullGameFlow({
     betLevel: 1, // Bet level (1-10)
-    coinValue: 1, // Coin value (1, 2, 5, 10, 20, 50, 100)
+    coinValue: 0.1, // Coin value (0.1, 0.2, 0.3)
     freeSpin: false, // Is this a free spin bet
 });
 ```
@@ -197,7 +197,7 @@ BET_CONFIGS.FREE_SPIN; // Free spin configuration
 ```javascript
 const customBet = {
     betLevel: 5, // 1-10
-    coinValue: 10, // 1, 2, 5, 10, 20, 50, 100
+    coinValue: 0.2, // 0.1, 0.2, 0.3
     freeSpin: false, // true for free spins
 };
 ```
@@ -326,7 +326,7 @@ The client follows this communication pattern:
     event: "ingame",
     data: {
         gameConfigs: {
-            coinValues: [1, 2, 5, 10, 20, 50, 100],
+            coinValues: [0.1, 0.2, 0.3],
             betLevels: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
             betMultiplier: 20,
             maxWinPerRound: 50000,
@@ -406,7 +406,7 @@ async function stepByStepGame() {
         // Step 3: Place bet
         const betResult = await client.placeBet({
             betLevel: 5,
-            coinValue: 10,
+            coinValue: 0.2,
             freeSpin: false,
         });
         console.log("Bet placed:", betResult.data.endBet);
@@ -511,6 +511,65 @@ try {
     client.cleanup();
 }
 ```
+
+## Bet Failure Detection
+
+The client automatically detects and handles bet placement failures:
+
+### Detection Criteria
+
+-   **`endBet = -1`**: Primary failure indicator from game server
+-   **API Error Flags**: Checks for `apiError.isPlaceBetFailed = true`
+-   **Error Responses**: Validates `result.success` and error fields
+
+### Example Bet Failure Response
+
+```javascript
+{
+    success: false,
+    event: "bet",
+    error: {
+        code: "PLACE_BET_FAILED",
+        message: "Bet placement failed (endBet = -1)",
+        details: {
+            errorCode: "SB1900",
+            gameTypeId: 47,
+            isPlaceBetFailed: true,
+            gameRoundId: 7504972
+        }
+    },
+    data: {
+        endBet: -1,
+        apiError: {
+            errorCode: "SB1900",
+            gameTypeId: 47,
+            isPlaceBetFailed: true,
+            gameRoundId: 7504972
+        }
+    }
+}
+```
+
+### Behavior on Bet Failure
+
+When `executeFullGameFlow()` detects a bet failure, it will:
+
+1. **Stop the flow** immediately after the failed bet
+2. **Return detailed error information** with failure codes and messages
+3. **Provide completed steps** (signin, ingame, failed bet) for debugging
+4. **Log comprehensive failure details** if logging is enabled
+
+### Testing Bet Failures
+
+Use the dedicated test script to verify failure detection:
+
+```bash
+npm run test-bet-failure
+# or
+npm run client:test-bet-failure
+```
+
+This script will demonstrate how the client handles various failure scenarios.
 
 ## Requirements
 

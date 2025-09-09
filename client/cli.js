@@ -11,11 +11,8 @@
 import readline from "readline";
 import { GameClient, GAME_SCENARIOS, USER_PROFILES, BET_CONFIGS, GameScenarioUtils } from "./index.js";
 
-console.log("🔧 DEBUG: CLI script loaded, creating class...");
-
 class InteractiveCLI {
     constructor() {
-        console.log("🔧 DEBUG: InteractiveCLI constructor called");
         this.rl = readline.createInterface({
             input: process.stdin,
             output: process.stdout,
@@ -23,20 +20,16 @@ class InteractiveCLI {
 
         this.client = null;
         this.currentUser = null;
-        console.log("🔧 DEBUG: InteractiveCLI constructor completed");
     }
 
     async start() {
-        console.log("🔧 DEBUG: start() method called");
         console.log("🎰 Welcome to Cascading Slot Game!");
         console.log("=".repeat(50));
 
-        console.log("🔧 DEBUG: About to call showMainMenu()");
         await this.showMainMenu();
     }
 
     async showMainMenu() {
-        console.log("🔧 DEBUG: showMainMenu() called");
         console.log("\n🎮 Game Menu:");
         console.log("1. Quick Play (Play a game session)");
         console.log("2. Scenario Play (Play with specific scenarios)");
@@ -180,6 +173,7 @@ class InteractiveCLI {
 
             if (betResult.success) {
                 console.log(`✅ Bet placed successfully! Amount: ${betResult.data.endBet}`);
+                console.log(`   Bet Data: ${JSON.stringify(betResult.data, null, 2)}`);
 
                 // Step 4: End game (show results)
                 console.log("\n4️⃣ Processing game results...");
@@ -192,7 +186,10 @@ class InteractiveCLI {
                     console.log("❌ Failed to end game");
                 }
             } else {
-                console.log("❌ Failed to place bet");
+                console.log(`❌ Bet placement failed!`);
+                console.log(`   Error: ${JSON.stringify(betResult.error, null, 2)}`);
+                console.log(`   Data: ${JSON.stringify(betResult.data, null, 2)}`);
+                console.log(`\n⚠️  Cannot continue with endgame - bet failed`);
             }
         } catch (error) {
             console.log("💥 Step-by-step play failed:", error.message);
@@ -316,6 +313,8 @@ class InteractiveCLI {
             console.log(`⭐ Big Win: ${endStep.data.bigWin ? "🎉 YES!" : "No"}`);
             console.log(`📈 Multiplier: ${endStep.data.multiplier || 0}x`);
             console.log(`🎁 Free Spins: ${endStep.data.freeSpins || 0}`);
+            console.log(`\n📄 Detailed Bet Data: ${JSON.stringify(betStep.data, null, 2)}`);
+            console.log(`\n📄 Detailed End Game Data: ${JSON.stringify(endStep.data, null, 2)}`);
         }
     }
 
@@ -338,14 +337,8 @@ class InteractiveCLI {
     }
 }
 
-console.log("🔧 DEBUG: Bottom of script reached");
-console.log("🔧 DEBUG: import.meta.url:", import.meta.url);
-console.log("🔧 DEBUG: process.argv[1]:", process.argv[1]);
-console.log("🔧 DEBUG: file:// + process.argv[1]:", `file://${process.argv[1]}`);
-
 // Run CLI if this file is executed directly
 if (import.meta.url === `file://${process.argv[1]}`) {
-    console.log("🔧 DEBUG: Direct execution detected - starting CLI");
     const cli = new InteractiveCLI();
 
     // Handle graceful shutdown
@@ -357,14 +350,10 @@ if (import.meta.url === `file://${process.argv[1]}`) {
 
     cli.start().catch(console.error);
 } else {
-    console.log("🔧 DEBUG: Not direct execution, trying alternative check...");
-
     // Alternative check for direct execution
     const isMainModule = process.argv[1] && process.argv[1].includes("cli.js");
-    console.log("🔧 DEBUG: Alternative check result:", isMainModule);
 
     if (isMainModule) {
-        console.log("🔧 DEBUG: Alternative check passed - starting CLI");
         const cli = new InteractiveCLI();
 
         // Handle graceful shutdown
@@ -375,8 +364,6 @@ if (import.meta.url === `file://${process.argv[1]}`) {
         });
 
         cli.start().catch(console.error);
-    } else {
-        console.log("🔧 DEBUG: This file was imported, not executed directly");
     }
 }
 

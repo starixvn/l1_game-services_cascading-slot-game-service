@@ -10,7 +10,8 @@
         "client": "node --import=extensionless/register cli.js",
         "simple": "node --import=extensionless/register examples/simple-client.js",
         "scenarios": "node --import=extensionless/register examples/scenario-client.js",
-        "test-logs": "node --import=extensionless/register test-logs.js"
+        "test-logs": "node --import=extensionless/register test-logs.js",
+        "test-bet-failure": "node --import=extensionless/register test-bet-failure.js"
     },
     "bin": {
         "game-client": "./cli.js"

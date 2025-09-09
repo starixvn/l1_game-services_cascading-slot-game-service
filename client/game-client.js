@@ -13,7 +13,7 @@ export default class GameClient {
             timeout: 10000,
             enableLogs: true,
             gameServer: {
-                socketUri: "http://localhost:5001/user/treasureisland",
+                socketUri: "http://localhost:5000/user/treasureisland",
                 proxyRoute: "/socket.io",
                 gameName: "TreasureIsland",
             },
@@ -51,10 +51,11 @@ export default class GameClient {
         const timestamp = Date.now();
         return {
             session: `${user.playerId}-session-${timestamp}`,
-            ss: `${user.playerId}-session-${timestamp}`,
-            currency: user.currency || "USD",
-            username: `${user.playerId}_${user.playerName}`,
-            browserUserAgent: "cascading-slot-game-client/1.0",
+            ss: "95j5CMXF3eVssJjYfIAJJwzSxHCkcHd9_ONEworksVGCash_21031988",
+            currency: "INH",
+            username: "ONEworksVGCash_21031988",
+            browserUserAgent:
+                "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36",
             clientVersion: "1.0.0",
             timestamp: timestamp,
         };
@@ -188,9 +189,9 @@ export default class GameClient {
 
         const defaultBetOptions = {
             betLevel: 1,
-            coinValue: 1,
+            coinValue: 0.1,
             freeSpin: false,
-            totalBet: 20,
+            totalBet: 2, // 1 * 0.1 * 20 = 2
         };
 
         const bet = { ...defaultBetOptions, ...betOptions };
@@ -201,8 +202,24 @@ export default class GameClient {
             this.clientDriver.emit("bet", bet);
             const result = await this.clientDriver.handleGameEvent((data) => data);
 
-            this.gameState.lastBetResult = result;
+            // Check for bet placement failure
+            const isBetFailed = this._isBetFailed(result);
 
+            if (isBetFailed.failed) {
+                this.gameState.lastBetResult = result;
+                this._logEvent("bet", "Bet placement failed", result);
+
+                return {
+                    success: false,
+                    event: "bet",
+                    data: result,
+                    betOptions: bet,
+                    error: isBetFailed.error,
+                    state: { ...this.gameState },
+                };
+            }
+
+            this.gameState.lastBetResult = result;
             this._logEvent("bet", "Bet placed successfully", result);
 
             return {
@@ -291,6 +308,32 @@ export default class GameClient {
             }
             const betResult = await this.placeBet(betOptions);
             results.push(betResult);
+
+            // Check if bet placement failed
+            if (!betResult.success) {
+                if (this.options.enableLogs) {
+                    console.log(`[GameClient] ❌ Bet placement failed, stopping flow`);
+                    console.log(`[GameClient] Error: ${JSON.stringify(betResult.error, null, 2)}`);
+                }
+
+                const failedFlowResult = {
+                    success: false,
+                    flow: "signin -> ingame -> placebet (FAILED)",
+                    steps: results,
+                    completedSteps: results,
+                    error: `Bet placement failed: ${betResult.error?.message || "Unknown error"}`,
+                    betFailure: betResult.error,
+                    finalState: { ...this.gameState },
+                    eventHistory: [...this.eventHistory],
+                };
+
+                if (this.options.enableLogs) {
+                    console.log(`[GameClient] 💥 Full game flow failed: ${failedFlowResult.error}`);
+                    console.log(`[GameClient] Completed ${failedFlowResult.completedSteps.length}/4 steps`);
+                }
+
+                return failedFlowResult;
+            }
 
             // Step 4: End game
             if (this.options.enableLogs) {
@@ -417,9 +460,68 @@ export default class GameClient {
      */
     calculateTotalBet(betLevel, coinValue) {
         if (!this.gameState.gameConfigs) {
-            return betLevel * coinValue * 20; // Default multiplier
+            return parseFloat((betLevel * coinValue * 20).toFixed(2)); // Default multiplier, format to 2 decimal places
         }
-        return betLevel * coinValue * this.gameState.gameConfigs.betMultiplier;
+        return parseFloat((betLevel * coinValue * this.gameState.gameConfigs.betMultiplier).toFixed(2));
+    }
+
+    /**
+     * Private method to check if bet placement failed
+     */
+    _isBetFailed(result) {
+        if (!result) {
+            return {
+                failed: true,
+                error: "No result data received",
+            };
+        }
+
+        // Check for endBet = -1 (primary failure indicator)
+        if (result.endBet === -1) {
+            const errorDetails = {
+                code: "PLACE_BET_FAILED",
+                message: "Bet placement failed (endBet = -1)",
+                details: result.apiError || "No additional error details",
+            };
+
+            return {
+                failed: true,
+                error: errorDetails,
+            };
+        }
+
+        // Check for explicit API error with isPlaceBetFailed flag
+        if (result.apiError && result.apiError.isPlaceBetFailed === true) {
+            const errorDetails = {
+                code: result.apiError.errorCode || "API_ERROR",
+                message: "API reported bet placement failure",
+                details: result.apiError,
+            };
+
+            return {
+                failed: true,
+                error: errorDetails,
+            };
+        }
+
+        // Check for other error indicators
+        if (result.error || result.success === false) {
+            const errorDetails = {
+                code: "BET_ERROR",
+                message: "Bet result indicates error",
+                details: result.error || result,
+            };
+
+            return {
+                failed: true,
+                error: errorDetails,
+            };
+        }
+
+        return {
+            failed: false,
+            error: null,
+        };
     }
 
     /**
@@ -436,7 +538,11 @@ export default class GameClient {
         this.eventHistory.push(eventEntry);
 
         if (this.options.enableLogs) {
-            console.log(`[${eventEntry.timestamp}] [${event.toUpperCase()}] ${message}`, data || "");
+            const formattedData = data ? JSON.stringify(data, null, 2) : "null";
+            console.log(`[${eventEntry.timestamp}] [${event.toUpperCase()}] ${message}`);
+            if (data) {
+                console.log(`  Data: ${formattedData}`);
+            }
         }
     }
 

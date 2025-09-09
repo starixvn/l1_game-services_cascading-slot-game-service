@@ -131,28 +131,29 @@ export const GAME_SCENARIOS = {
 
 /**
  * Common bet configurations for different play styles
+ * Supports coinValues: [0.1, 0.2, 0.3] and betLevels: [1-10]
  */
 export const BET_CONFIGS = {
     CONSERVATIVE: {
         name: "Conservative Play",
         betLevel: 1,
-        coinValue: 1,
+        coinValue: 0.1,
         freeSpin: false,
         description: "Safe betting with minimum stakes",
     },
 
     MODERATE: {
         name: "Moderate Play",
-        betLevel: 3,
-        coinValue: 5,
+        betLevel: 5,
+        coinValue: 0.2,
         freeSpin: false,
         description: "Balanced betting for steady play",
     },
 
     AGGRESSIVE: {
         name: "Aggressive Play",
-        betLevel: 7,
-        coinValue: 20,
+        betLevel: 8,
+        coinValue: 0.3,
         freeSpin: false,
         description: "High-risk, high-reward betting",
     },
@@ -160,7 +161,7 @@ export const BET_CONFIGS = {
     MAXIMUM: {
         name: "Maximum Bet",
         betLevel: 10,
-        coinValue: 100,
+        coinValue: 0.3,
         freeSpin: false,
         description: "Maximum possible bet amount",
     },
@@ -168,7 +169,7 @@ export const BET_CONFIGS = {
     FREE_SPIN: {
         name: "Free Spin",
         betLevel: 1,
-        coinValue: 1,
+        coinValue: 0.1,
         freeSpin: true,
         description: "Free spin bet (no cost)",
     },
@@ -248,7 +249,7 @@ export class GameScenarioUtils {
      * Calculate expected bet amount
      */
     static calculateBetAmount(betConfig, betMultiplier = 20) {
-        return betConfig.betLevel * betConfig.coinValue * betMultiplier;
+        return parseFloat((betConfig.betLevel * betConfig.coinValue * betMultiplier).toFixed(2));
     }
 
     /**

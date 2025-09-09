@@ -44,8 +44,15 @@ async function runSimpleClient() {
                 console.log(`\n${index + 1}. ${step.event.toUpperCase()}`);
                 console.log(`   Status: ${step.success ? "✅ Success" : "❌ Failed"}`);
 
-                if (step.event === "bet" && step.data.endBet) {
-                    console.log(`   Bet Amount: ${step.data.endBet}`);
+                if (step.event === "bet") {
+                    if (step.success && step.data.endBet && step.data.endBet !== -1) {
+                        console.log(`   Bet Amount: ${step.data.endBet}`);
+                        console.log(`   Bet Details: ${JSON.stringify(step.data, null, 2)}`);
+                    } else {
+                        console.log(`   ❌ Bet Failed (endBet: ${step.data.endBet})`);
+                        console.log(`   Error: ${JSON.stringify(step.error, null, 2)}`);
+                        console.log(`   Data: ${JSON.stringify(step.data, null, 2)}`);
+                    }
                 }
 
                 if (step.event === "endgame") {
@@ -66,6 +73,20 @@ async function runSimpleClient() {
             console.log(`   Free Spins Available: ${finalState.freeSpins}`);
         } else {
             console.log("❌ Game failed:", result.error);
+
+            if (result.betFailure) {
+                console.log("\n💥 Bet Placement Failed:");
+                console.log(`   Code: ${result.betFailure.code}`);
+                console.log(`   Message: ${result.betFailure.message}`);
+                console.log(`   Details: ${JSON.stringify(result.betFailure.details, null, 2)}`);
+            }
+
+            if (result.completedSteps && result.completedSteps.length > 0) {
+                console.log(`\n📋 Completed Steps (${result.completedSteps.length}/4):`);
+                result.completedSteps.forEach((step, index) => {
+                    console.log(`   ${index + 1}. ${step.event}: ${step.success ? "✅" : "❌"}`);
+                });
+            }
         }
     } catch (error) {
         console.error("💥 Error during game session:", error.message);

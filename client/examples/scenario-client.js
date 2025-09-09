@@ -76,6 +76,8 @@ async function runScenarioClient() {
                 console.log(`   ⭐ Big Win: ${endgameStep.data.bigWin ? "🎉 YES" : "No"}`);
                 console.log(`   📈 Multiplier: ${endgameStep.data.multiplier || 0}x`);
                 console.log(`   🎁 Free Spins: ${endgameStep.data.freeSpins || 0}`);
+                console.log(`\n   📄 Detailed Bet Data: ${JSON.stringify(betStep.data, null, 4)}`);
+                console.log(`\n   📄 Detailed End Game Data: ${JSON.stringify(endgameStep.data, null, 4)}`);
 
                 // Calculate profit/loss
                 const profit = (endgameStep.data.win || 0) - betStep.data.endBet;

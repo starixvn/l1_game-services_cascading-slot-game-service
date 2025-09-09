@@ -35,22 +35,27 @@ async function testLogs() {
 
         const result = await client.executeFullGameFlow({
             betLevel: 1,
-            coinValue: 1,
+            coinValue: 0.1,
             freeSpin: false,
         });
 
         console.log("\n✅ Game flow completed!");
         console.log("Result:", result.success ? "SUCCESS" : "FAILED");
+        console.log("\n📄 Detailed Result Data:");
+        console.log(JSON.stringify(result, null, 2));
     } catch (error) {
         console.log("\n❌ Game flow failed:");
         console.log("Error message:", error.message);
-        console.log("Error details:", error);
+        console.log("Error details:", JSON.stringify(error, Object.getOwnPropertyNames(error), 2));
 
         // Show completed steps if available
         if (error.completedSteps) {
             console.log(`\n📋 Steps completed: ${error.completedSteps.length}/4`);
             error.completedSteps.forEach((step, index) => {
                 console.log(`   ${index + 1}. ${step.event}: ${step.success ? "✅" : "❌"}`);
+                if (step.data) {
+                    console.log(`      Step Data: ${JSON.stringify(step.data, null, 4)}`);
+                }
             });
         }
     } finally {
