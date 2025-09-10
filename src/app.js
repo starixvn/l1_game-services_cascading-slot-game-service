@@ -10,7 +10,7 @@ const run = async () => {
     const appName = process.env.APP_NAME;
 
     if (appName) {
-        const gameName = appName.replace("service", "").replaceAll("_", "");
+        const gameName = appName.replace("service", "").replaceAll("_", "").trim();
 
         appConfigs.database.url = appConfigs.database.url.concat(`&appName=${gameName.toLowerCase()}`);
         appConfigs.sentry.logIdentifier = gameName.toLowerCase();
