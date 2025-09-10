@@ -68,4 +68,7 @@ export default {
         timeout: 5000,
         useAuthentication: false,
     },
+    resultChains: {
+        enabled: true,
+    },
 };
