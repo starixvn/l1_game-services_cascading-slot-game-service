@@ -18,6 +18,7 @@ export default class CascadingSlotGameCron extends CascadingGameCron {
      * @param {TotalMultiplierConsumer} dependencies.totalMultiplierConsumer
      * @param {CascadingSlotTrialMode} dependencies.CascadingSlotTrialMode
      * @param {TrialModeBoardGenerator} dependencies.TrialModeBoardGenerator
+     * @param {UserChainConsumer} dependencies.userChainConsumer
      */
     constructor({
         definition,
@@ -30,14 +31,15 @@ export default class CascadingSlotGameCron extends CascadingGameCron {
         runningRoundInfoPublisher,
         logService,
         roundsRepository,
+        roundIdConsumer,
+        gameManagementApiClientFactory,
         totalMultiplierConsumer,
         boardGenerator,
         cascadingSlotTrialMode,
         trialModeBoardGenerator,
-        roundIdConsumer,
-        gameManagementApiClientFactory,
         promotionFreeSpinsConsumer,
         resultChainManager,
+        userChainConsumer,
     }) {
         super({
             definition,
@@ -56,6 +58,7 @@ export default class CascadingSlotGameCron extends CascadingGameCron {
             gameManagementApiClientFactory,
             promotionFreeSpinsConsumer,
             resultChainManager,
+            userChainConsumer,
         });
 
         this.cascadingSlotTrialMode = cascadingSlotTrialMode;
