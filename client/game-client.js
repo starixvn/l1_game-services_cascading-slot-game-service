@@ -13,9 +13,9 @@ export default class GameClient {
             timeout: 10000,
             enableLogs: true,
             gameServer: {
-                socketUri: "http://localhost:5000/user/treasureisland",
+                socketUri: "http://localhost:5000/user/" + options.gameName.toLowerCase(),
                 proxyRoute: "/socket.io",
-                gameName: "TreasureIsland",
+                gameName: options.gameName,
             },
             ...options,
         };
@@ -51,9 +51,9 @@ export default class GameClient {
         const timestamp = Date.now();
         return {
             session: `${user.playerId}-session-${timestamp}`,
-            ss: "95j5CMXF3eVssJjYfIAJJwzSxHCkcHd9_ONEworksVGCash_21031988",
+            ss: user.sessionId,
             currency: "INH",
-            username: "ONEworksVGCash_21031988",
+            username: user.userName,
             browserUserAgent:
                 "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36",
             clientVersion: "1.0.0",
@@ -200,32 +200,33 @@ export default class GameClient {
             this._logEvent("bet", "Placing bet", bet);
 
             this.clientDriver.emit("bet", bet);
-            const result = await this.clientDriver.handleGameEvent((data) => data);
+            const endBet = await this.clientDriver.handleGameEvent((data) => data.endBet);
+            const finish = await this.clientDriver.handleGameEvent((data) => data.finish);
 
             // Check for bet placement failure
-            const isBetFailed = this._isBetFailed(result);
+            const isBetFailed = this._isBetFailed(endBet);
 
             if (isBetFailed.failed) {
-                this.gameState.lastBetResult = result;
-                this._logEvent("bet", "Bet placement failed", result);
+                this.gameState.lastBetResult = endBet;
+                this._logEvent("bet", "Bet placement failed", endBet);
 
                 return {
                     success: false,
                     event: "bet",
-                    data: result,
+                    data: endBet,
                     betOptions: bet,
                     error: isBetFailed.error,
                     state: { ...this.gameState },
                 };
             }
 
-            this.gameState.lastBetResult = result;
-            this._logEvent("bet", "Bet placed successfully", result);
+            this.gameState.lastBetResult = finish;
+            this._logEvent("bet", "Bet placed successfully", finish);
 
             return {
                 success: true,
                 event: "bet",
-                data: result,
+                data: finish,
                 betOptions: bet,
                 state: { ...this.gameState },
             };
