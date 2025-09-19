@@ -6,7 +6,7 @@
     "scripts": {
         "test": "jest --testPathPattern=tests/unit-tests",
         "test-coverage": "jest --collect-coverage --testPathPattern=tests/unit-tests",
-        "dev": "set APP_NAME=treasureisland&& nodemon --import=extensionless/register --watch ./src ./src/app.js",
+        "dev": "set APP_NAME=wukongsrevenge&& nodemon --import=extensionless/register --watch ./src ./src/app.js",
         "debug": "nodemon --import=extensionless/register --watch ./ --inspect ./src/app.js",
         "prod": "node --max-old-space-size=8192 --import=extensionless/register ./src/app.js",
         "reg": "npm set registry http://npm.lumigame.com",
@@ -22,7 +22,7 @@
     "type": "module",
     "dependencies": {
         "lodash.clonedeep": "^4.5.0",
-        "sc-cascading-slot-base": "2.3.0-beta.6",
+        "sc-cascading-slot-base": "2.3.0-beta.7",
         "sc-trial-mode": "1.0.1",
         "extensionless": "^1.9.9",
         "mongoose": "6.13.8"
