@@ -56,7 +56,7 @@ export default {
         url: "http://localhost:8004/api",
     },
     adminSecretKey: "asWDEerfOIdgsdqRTFabvmgh",
-    freeSpinLiveSeconds: 86400, // 1 day
+    freeSpinLiveSeconds: 55 * 60, // 55 minutes
     bonusLiveSeconds: 127,
     gameManagementApiSettings: {
         BASE: "https://l1-proxy.lumigame.com/game-management-service",

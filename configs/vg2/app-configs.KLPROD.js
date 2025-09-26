@@ -51,7 +51,7 @@ export default {
         secretKey: "30d15293-c7de-4c77-9293-b85d6c5bfe1a",
     },
     enableMsgpackParser: true,
-    freeSpinLiveSeconds: 86400, // 1 day
+    freeSpinLiveSeconds: 55 * 60, // 55 minutes
     bonusLiveSeconds: 127,
     gameManagementApiSettings: {
         BASE: "http://l2-game-management-service-klprod-service:5000",
