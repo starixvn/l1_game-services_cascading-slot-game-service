@@ -69,6 +69,14 @@ export default {
         useAuthentication: false,
     },
     resultChains: {
-        enabled: true,
+        maxChains: 300, // Total chains loaded from DB
+        maxPlayerChains: 100, // Max active assignments in memory
+        memoryExpirationMinutes: 30, // Auto-cleanup threshold
+        assignment: {
+            minPlayableBoards: 40, // Min boards for assignment
+            maxBoards: 125, // Max applicable boards
+            boardsMultiplier: 0.25, // 25% bonus calculation
+            boardRange: [50, 75, 100, 125], // Valid counts
+        },
     },
 };
