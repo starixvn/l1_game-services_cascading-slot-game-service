@@ -6,16 +6,11 @@
     "scripts": {
         "test": "jest --testPathPattern=tests/unit-tests",
         "test-coverage": "jest --collect-coverage --testPathPattern=tests/unit-tests",
-        "dev": "set APP_NAME=mahjongwins&& nodemon --import=extensionless/register --watch ./src ./src/app.js",
+        "dev": "set APP_NAME=wukongsrevenge1&& nodemon --import=extensionless/register --watch ./src ./src/app.js",
         "debug": "nodemon --import=extensionless/register --watch ./ --inspect ./src/app.js",
-        "prod": "set APP_NAME=mahjongwins&& node --max-old-space-size=8192 --import=extensionless/register ./src/app.js",
+        "prod": "set APP_NAME=wukongsrevenge&& node --max-old-space-size=8192 --import=extensionless/register ./src/app.js",
         "reg": "npm set registry http://npm.lumigame.com",
-        "integration-test": "jest --config ./jest.integration-test.config.cjs --testPathPattern=tests/integration-tests/ --ci --reporters=default --reporters=jest-junit --forceExit --runInBand",
-        "play": "cd client && node --import=extensionless/register play-game.js",
-        "client": "cd client && node --import=extensionless/register cli.js",
-        "client:simple": "cd client && node --import=extensionless/register examples/simple-client.js",
-        "client:scenarios": "cd client && node --import=extensionless/register examples/scenario-client.js",
-        "client:test-logs": "cd client && node --import=extensionless/register test-logs.js"
+        "integration-test": "jest --config ./jest.integration-test.config.cjs --testPathPattern=tests/integration-tests/ --ci --reporters=default --reporters=jest-junit --forceExit --runInBand"
     },
     "jestSonar": {
         "reportPath": "reports",
@@ -27,7 +22,7 @@
     "type": "module",
     "dependencies": {
         "lodash.clonedeep": "^4.5.0",
-        "sc-cascading-slot-base": "2.3.0",
+        "sc-cascading-slot-base": "2.2.1-beta.0 ",
         "sc-trial-mode": "1.0.1",
         "extensionless": "^1.9.9",
         "mongoose": "6.13.8"
