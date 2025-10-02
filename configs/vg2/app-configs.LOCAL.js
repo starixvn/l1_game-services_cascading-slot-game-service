@@ -46,7 +46,7 @@ export default {
         url: "http://l2-user-service-local-service:5000",
     },
     adminSecretKey: "asWDEerfOIdgsdqRTFabvmgh",
-    freeSpinLiveSeconds: 86400, // 1 day
+    freeSpinLiveSeconds: 5 * 60, // 55 minutes
     bonusLiveSeconds: 127,
     otel: {
         system: "VG",
