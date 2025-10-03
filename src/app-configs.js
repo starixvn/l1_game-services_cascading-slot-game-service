@@ -2,27 +2,29 @@ export default {
     hostingPort: 5000,
     apiSettings: {
         enabledApi: true,
-        apiUrl: "http://api.lumigame.com",
-        authUrl: "http://auth.lumigame.com",
+        apiUrl: "https://l2-proxy2.lumigame.com/game-api",
+        authUrl: "https://l2-auth2.lumigame.com/",
         client: {
             id: "game-server",
             secret: "gameserver@20luminet&",
         },
-        useAuthenticate: false,
+
+        useAuthenticate: true,
         requestTimeout: 10000,
         placeBetTimeout: 4000,
         hitJackpotTimeout: 200000,
-        enableApiLogs: true,
+        enabledApiLogs: true,
     },
-    notificationApiSettings: {
-        url: "http://localhost:8004/api",
-        auth: {
-            url: "http://auth.lumigame.com",
-            id: "game-services",
-            secret: "gameservices@20luminet&",
-        },
+    authenticateSettings: {
+        url: "https://l2-auth2.lumigame.com/",
+        id: "game-services",
+        secret: "gameservices@20luminet&",
         requestTimeout: 10000,
         useAuthenticate: true,
+        audiences: ["api", "admin-api"],
+    },
+    notificationApiSettings: {
+        url: "https://l2-proxy2.lumigame.com/notification/api",
     },
     socketOptions: {
         pingInterval: 60 * 1000,
@@ -32,7 +34,7 @@ export default {
     },
     enabledLogs: true,
     database: {
-        url: "mongodb://127.0.0.1:27017",
+        url: "mongodb://lmn_backend:LmnBackend@10.10.50.12:39202,10.10.50.13:39202,10.10.50.14:39202/?replicaSet=L2ppLocal",
         options: {
             dbName: "minigame",
             useNewUrlParser: true,
@@ -44,29 +46,32 @@ export default {
         logIdentifier: "cascading-slot",
         env: "LOCAL",
     },
-    authenticateSettings: {
-        url: "http://l1-auth-api-local-service:5000",
-        id: "game-services",
-        secret: "gameservices@20luminet&",
-        requestTimeout: 10000,
-        useAuthenticate: false,
-        audiences: ["api", "admin-api"],
-    },
     userServiceSettings: {
-        url: "http://localhost:8004/api",
+        url: "https://l2-proxy2.lumigame.com/user",
     },
     adminSecretKey: "asWDEerfOIdgsdqRTFabvmgh",
     freeSpinLiveSeconds: 55 * 60, // 55 minutes
     bonusLiveSeconds: 127,
     gameManagementApiSettings: {
-        BASE: "https://l1-proxy.lumigame.com/game-management-service",
+        BASE: "https://l2-proxy2.lumigame.com/game-management-service",
     },
     promotionApiSettings: {
-        baseUrl: "http://l1-proxy.lumigame.com/game-promotion-api",
+        baseUrl: "https://l2-proxy2.lumigame.com/game-promotion-api/",
         timeout: 5000,
         useAuthentication: false,
     },
     trackingApiSettings: {
-        baseUrl: "https://l1-proxy.lumigame.com/user-tracking-api",
+        baseUrl: "https://l2-proxy2.lumigame.com/user-tracking-api",
+    },
+    resultChains: {
+        maxChains: 300, // Total chains loaded from DB
+        maxPlayerChains: 20, // Max active assignments in memory
+        memoryExpirationMinutes: 30, // Auto-cleanup threshold
+        assignment: {
+            minPlayableBoards: 40, // Min boards for assignment
+            maxBoards: 125, // Max applicable boards
+            boardsMultiplier: 0.25, // 25% bonus calculation
+            boardRange: [50, 75, 100, 125], // Valid counts
+        },
     },
 };
