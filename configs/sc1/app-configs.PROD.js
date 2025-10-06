@@ -53,4 +53,23 @@ export default {
         secretKey: "30d15293-c7de-4c77-9293-b85d6c5bfe1a",
     },
     enableMsgpackParser: true,
+    promotionApiSettings: {
+        baseUrl: "http://l1-game-promotion-api-prod-service:5000",
+        timeout: 5000,
+        useAuthentication: false,
+    },
+    trackingApiSettings: {
+        baseUrl: "http://l1-user-tracking-api-prod-service:5000",
+    },
+    resultChains: {
+        maxChains: 200, // Total chains loaded from DB
+        maxPlayerChains: 30, // Max active assignments in memory
+        memoryExpirationMinutes: 30, // Auto-cleanup threshold
+        assignment: {
+            minPlayableBoards: 40, // Min boards for assignment
+            maxBoards: 100, // Max applicable boards
+            boardsMultiplier: 0.25, // 25% bonus calculation
+            boardRange: [50, 75, 100], // Valid counts
+        },
+    },
 };

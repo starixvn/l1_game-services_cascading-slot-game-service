@@ -64,4 +64,15 @@ export default {
     trackingApiSettings: {
         baseUrl: "http://l1-user-tracking-api-local1-service:5000",
     },
+    resultChains: {
+        maxChains: 200, // Total chains loaded from DB
+        maxPlayerChains: 30, // Max active assignments in memory
+        memoryExpirationMinutes: 30, // Auto-cleanup threshold
+        assignment: {
+            minPlayableBoards: 40, // Min boards for assignment
+            maxBoards: 100, // Max applicable boards
+            boardsMultiplier: 0.25, // 25% bonus calculation
+            boardRange: [50, 75, 100], // Valid counts
+        },
+    },
 };
