@@ -22,14 +22,14 @@
     "type": "module",
     "dependencies": {
         "lodash.clonedeep": "^4.5.0",
-        "sc-cascading-slot-base": "2.6.0-beta.1",
+        "sc-cascading-slot-base": "2.6.0",
         "sc-trial-mode": "1.0.1",
-        "extensionless": "^1.9.9",
-        "mongoose": "6.13.8"
+        "extensionless": "^1.9.9"
     },
-    "overrides": {
+    "resolutions": {
         "mongoose": "6.13.8",
-        "mongoose-long": "0.8.0"
+        "mongoose-long": "0.8.0",
+        "sc-game-management-client": "0.1.6"
     },
     "devDependencies": {
         "@babel/preset-env": "7.24.4",
