@@ -6,9 +6,9 @@
     "scripts": {
         "test": "jest --testPathPattern=tests/unit-tests",
         "test-coverage": "jest --collect-coverage --testPathPattern=tests/unit-tests",
-        "dev": "set APP_NAME=olympub&& nodemon --import=extensionless/register --watch ./src ./src/app.js",
+        "dev": "set APP_NAME=luckyneko&& nodemon --import=extensionless/register --watch ./src ./src/app.js",
         "debug": "nodemon --import=extensionless/register --watch ./ --inspect ./src/app.js",
-        "prod": "set APP_NAME=olympub&& node --max-old-space-size=8192 --import=extensionless/register ./src/app.js",
+        "prod": "set APP_NAME=luckyneko&& node --max-old-space-size=8192 --import=extensionless/register ./src/app.js",
         "reg": "npm set registry http://npm.lumigame.com",
         "integration-test": "jest --config ./jest.integration-test.config.cjs --testPathPattern=tests/integration-tests/ --ci --reporters=default --reporters=jest-junit --forceExit --runInBand"
     },
