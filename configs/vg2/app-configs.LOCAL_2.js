@@ -71,7 +71,7 @@ export default {
     resultChains: {
         maxChains: 200, // Total chains loaded from DB
         maxPlayerChains: 30, // Max active assignments in memory
-        memoryExpirationMinutes: 30, // Auto-cleanup threshold
+        memoryExpirationMinutes: 5, // Auto-cleanup threshold
         assignment: {
             minPlayableBoards: 40, // Min boards for assignment
             maxBoards: 100, // Max applicable boards
