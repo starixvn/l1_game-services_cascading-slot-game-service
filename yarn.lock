@@ -3756,11 +3756,6 @@ chance@^1.1.11, chance@^1.1.7, chance@^1.1.8, chance@^1.1.9:
   resolved "https://npm.lumigame.com/chance/-/chance-1.1.13.tgz#d4ecfd20c5e6799aaf5c2270d7653b32385cd6e3"
   integrity sha512-V6lQCljcLznE7tUYUM9EOAnnKXbctE6j/rdQkYOHIWbfGQbrzTsAXNW9CdU5XCo4ArXQCj/rb6HgxPlmGJcaUg==
 
-chance@^1.1.8:
-  version "1.1.13"
-  resolved "https://npm.lumigame.com/chance/-/chance-1.1.13.tgz#d4ecfd20c5e6799aaf5c2270d7653b32385cd6e3"
-  integrity sha512-V6lQCljcLznE7tUYUM9EOAnnKXbctE6j/rdQkYOHIWbfGQbrzTsAXNW9CdU5XCo4ArXQCj/rb6HgxPlmGJcaUg==
-
 char-regex@^1.0.2:
   version "1.0.2"
   resolved "https://npm.lumigame.com/char-regex/-/char-regex-1.0.2.tgz#d744358226217f981ed58f479b1d6bcc29545dcf"
@@ -7573,15 +7568,15 @@ sc-base-database@2.2.2:
     mongoose "^5.9.25"
     sc-common "1.8.1"
 
-sc-cascading-slot-base@2.9.0-beta.2:
-  version "2.9.0-beta.2"
-  resolved "https://npm.lumigame.com/sc-cascading-slot-base/-/sc-cascading-slot-base-2.9.0-beta.2.tgz#5b66a6eed63f1b0ee4b79385b5d00e0132895d17"
-  integrity sha512-Mb1nvZ5ColluBDKh4MPldZSqHFeSePWfKHCLr0bmj55aMB/3PbVFFoefppp0VxOF5N4fDxFA69IjS/Pienin5Q==
+sc-cascading-slot-base@2.9.0-beta.3:
+  version "2.9.0-beta.3"
+  resolved "https://npm.lumigame.com/sc-cascading-slot-base/-/sc-cascading-slot-base-2.9.0-beta.3.tgz#1f3e955df702fc2ca832c40810e5a88382410041"
+  integrity sha512-HNcxcG9zX8fyDuwvoZxfHD4XyWX2hX4/SDXSu6vPNoeJPgBxqVS96HmqL0SmVnBEfgNvglDt+n2SA/OCHw1BKA==
   dependencies:
     chance "^1.1.8"
     mathjs "14.5.3"
     sc-slot-board-generator "2.1.0"
-    sc-slot-game-base "3.3.0-beta.2"
+    sc-slot-game-base "3.3.0-beta.3"
 
 sc-common@1.8.1:
   version "1.8.1"
@@ -7670,10 +7665,10 @@ sc-slot-board-generator@2.1.0:
     chance "^1.1.7"
     ramda "^0.28.0"
 
-sc-slot-game-base@3.3.0-beta.2:
-  version "3.3.0-beta.2"
-  resolved "https://npm.lumigame.com/sc-slot-game-base/-/sc-slot-game-base-3.3.0-beta.2.tgz#88ab82598a7fb8ecd9692a322f3585d28699f0a4"
-  integrity sha512-OvLGT6NtRWoi0lGrGyhN+MoqQKj35mK0hHT6P4J/SYaidP13kPWqUplyuvdXFvgdexvtUuibkGL9/pcDXgz6wA==
+sc-slot-game-base@3.3.0-beta.3:
+  version "3.3.0-beta.3"
+  resolved "https://npm.lumigame.com/sc-slot-game-base/-/sc-slot-game-base-3.3.0-beta.3.tgz#92a50a6e269cf660931879059a44257a11c96709"
+  integrity sha512-LjSqBO/GC7rymuhN7lFdtod2mhjxLozShJ9IiwzOHpgoEGdTMgdVVXUL2N7zZ3ARD8Of5y0yMcur5vBjssLlTw==
   dependencies:
     chance "^1.1.9"
     lodash "^4.17.21"
