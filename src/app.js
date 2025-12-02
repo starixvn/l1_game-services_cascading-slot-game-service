@@ -34,6 +34,8 @@ const run = async () => {
             const container = new CascadingSlotContainerRegistry().register(appConfigs, definition, gameData);
 
             await app.startGame(container);
+
+            logger.logError(`${gameName} starting ${Date.now().toString()}`);
         } else {
             logger.logCritical(`${gameName} config doesn't exist`);
         }

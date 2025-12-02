@@ -30,8 +30,9 @@ export default {
         },
     },
     sentry: {
+        //https://8eb9632f2663e57c838ec83febbee14f@sentry-k8s.lumigame.com/4
         sentryUrl: "https://8eb9632f2663e57c838ec83febbee14f@sentry-k8s.lumigame.com/4",
-        logIdentifier: "three-cards",
+        logIdentifier: "cascading-slot",
         env: "local_2",
     },
     authenticateSettings: {
