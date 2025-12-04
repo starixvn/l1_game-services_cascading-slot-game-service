@@ -7568,10 +7568,10 @@ sc-base-database@2.2.2:
     mongoose "^5.9.25"
     sc-common "1.8.1"
 
-sc-cascading-slot-base@2.9.0:
-  version "2.9.0"
-  resolved "https://npm.lumigame.com/sc-cascading-slot-base/-/sc-cascading-slot-base-2.9.0.tgz#3df6b180ebf54e2865a2d49003fe3e2a83d829a3"
-  integrity sha512-QZ/j44e1B5n1y6fMd6z2mf+Ybh7zY4kPfLiz5OhyZudJ72ijb93ldpr+uAJbXlvo6mk0C9D3Kw84ynZurWcfGA==
+sc-cascading-slot-base@2.9.1-beta.1:
+  version "2.9.1-beta.1"
+  resolved "http://npm.lumigame.com/sc-cascading-slot-base/-/sc-cascading-slot-base-2.9.1-beta.1.tgz#6cd76b717f46a34435cdd45459c076b9a49fbc2a"
+  integrity sha512-nL0HnT6f0+ybDRNiuUYrTU47axjem9FXyFaIqD7wkUNJsbbkWPkoi5CDDfP1f9LwyYvlDCo/fDxdjhKbaywcKg==
   dependencies:
     chance "^1.1.8"
     mathjs "14.5.3"
@@ -7667,7 +7667,7 @@ sc-slot-board-generator@2.1.0:
 
 sc-slot-game-base@3.4.0:
   version "3.4.0"
-  resolved "https://npm.lumigame.com/sc-slot-game-base/-/sc-slot-game-base-3.4.0.tgz#4145cc93db0f2a2b542f7c857e65f85dcffaf0de"
+  resolved "http://npm.lumigame.com/sc-slot-game-base/-/sc-slot-game-base-3.4.0.tgz#4145cc93db0f2a2b542f7c857e65f85dcffaf0de"
   integrity sha512-5UfabVYzVhjuf0rYhmq+YVrcltj1ik/3rmKS0ly9YFH1gvksIM23lV6y8nPqEM+9/8HCCrww8jTCTBU1rf541Q==
   dependencies:
     chance "^1.1.9"
