@@ -50,7 +50,7 @@ export default {
         enable: true,
         secretKey: "6c1f0f28-70f2-46ae-b031-22624a6cd8df",
     },
-    freeSpinLiveSeconds: 55 * 60, // 55 minutes
+    freeSpinLiveSeconds: 60, // 1 minutes
     bonusLiveSeconds: 127,
     otel: {
         system: "VG",
